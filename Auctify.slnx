@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Auctify.API/Auctify.API.csproj" />
+  <Project Path="Auctify.Communication/Auctify.Communication.csproj" />
+  <Project Path="Auctify.Exceptions/Auctify.Exceptions.csproj" />
+</Solution>
