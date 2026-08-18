@@ -1,9 +1,10 @@
 namespace Auctify.Exceptions.ExceptionsBase;
 
-public class AuctifyException: SystemException
+public abstract class ExceptionBase: SystemException
 {
-  public AuctifyException(string message)
+  public ExceptionBase(string errorMessage) : base(errorMessage)
   {
-    
-  }      
+  }
+
+  public abstract List<string> GetErrors();
 }
