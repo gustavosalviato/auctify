@@ -1,3 +1,5 @@
+using System.Net;
+
 namespace Auctify.Exceptions.ExceptionsBase;
 
 public class ErrorOnValidationException : ExceptionBase
@@ -10,4 +12,5 @@ public class ErrorOnValidationException : ExceptionBase
     }
 
     public override List<string> GetErrors() => _errors;
+    public override HttpStatusCode GetHttpStatusCode() => HttpStatusCode.BadRequest;
 }

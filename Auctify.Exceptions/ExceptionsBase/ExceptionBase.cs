@@ -1,3 +1,5 @@
+using System.Net;
+
 namespace Auctify.Exceptions.ExceptionsBase;
 
 public abstract class ExceptionBase: SystemException
@@ -7,4 +9,5 @@ public abstract class ExceptionBase: SystemException
   }
 
   public abstract List<string> GetErrors();
+  public abstract HttpStatusCode GetHttpStatusCode();
 }
