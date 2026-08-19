@@ -1,4 +1,4 @@
-namespace Auctify.Communication.Responses;
+namespace Auctify.Communication.Responses.User;
 
 public class ResponseUserJson
 {

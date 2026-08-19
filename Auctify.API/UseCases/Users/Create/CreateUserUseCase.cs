@@ -1,7 +1,7 @@
 using Auctify.API.Contracts;
 using Auctify.API.Entities;
 using Auctify.Communication.Requests;
-using Auctify.Communication.Responses;
+using Auctify.Communication.Responses.User;
 using Auctify.Exceptions.ExceptionsBase;
 using Microsoft.AspNetCore.Identity;
 
@@ -25,7 +25,7 @@ public class CreateUserUseCase
         var exists = _userRepository.FindByEmail(request.Email);
 
         if (exists is not null)
-            throw new ClientErrorException("User with this email already exists.");
+            throw new ConflictErrorException("User with this email already exists.");
 
 
         var user = new User
@@ -39,11 +39,11 @@ public class CreateUserUseCase
         user.PasswordHash = passwordHashed;
 
         _userRepository.Create(user);
-        
+
 
         return new ResponseUserJson
         {
-            Id =  user.Id,
+            Id = user.Id,
             Name = user.Name,
             Email = user.Email,
         };
