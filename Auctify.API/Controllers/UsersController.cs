@@ -12,10 +12,8 @@ public class UsersController : Controller
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status400BadRequest)]
-    public IActionResult Register([FromBody] RequestUserJson request)
+    public IActionResult Register([FromBody] RequestUserJson request, [FromServices] CreateUserUseCase useCase)
     {
-        var useCase = new CreateUserUseCase();
-
         var response = useCase.Execute(request);
 
         return Created(string.Empty, response);
