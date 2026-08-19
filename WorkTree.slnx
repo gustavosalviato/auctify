@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="WorkTree.API\WorkTree.API.csproj" />
+  <Project Path="WorkTree.Communication\WorkTree.Communication.csproj" />
+  <Project Path="WorkTree.Exceptions\WorkTree.Exceptions.csproj" />
+</Solution>
