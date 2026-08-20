@@ -7,6 +7,7 @@ using WorkTree.API.UseCases.Users.Create;
 using WorkTree.API.UseCases.Users.Update;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using WorkTree.API.UseCases.Users.Delete;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddMvc(option => option.Filters.Add(typeof(ExceptionFilter)));
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<CreateUserUseCase>();
 builder.Services.AddScoped<UpdateUserUseCase>();
+builder.Services.AddScoped<DeleteUserUseCase>();
 
 builder.Services.AddScoped<IUserRepository, UsersRepository>();
 

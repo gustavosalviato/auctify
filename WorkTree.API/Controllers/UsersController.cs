@@ -3,6 +3,7 @@ using WorkTree.Communication.Responses;
 using WorkTree.Communication.Responses.User;
 using Microsoft.AspNetCore.Mvc;
 using WorkTree.API.UseCases.Users.Create;
+using WorkTree.API.UseCases.Users.Delete;
 using WorkTree.API.UseCases.Users.Update;
 
 namespace WorkTree.API.Controllers;
@@ -35,8 +36,15 @@ public class UsersController : Controller
         return NoContent();
     }
 
-    public IActionResult Delete()
+
+    [HttpDelete]
+    [Route("{userId}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status404NotFound)]
+    public IActionResult Delete([FromRoute] Guid userId, [FromServices] DeleteUserUseCase useCase)
     {
+        useCase.Execute(userId);
+
         return Ok();
     }
 }

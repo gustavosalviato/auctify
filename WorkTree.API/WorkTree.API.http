@@ -1,6 +1,6 @@
-@Auctify.API_HostAddress = http://localhost:5230
+@WorkTree.API_HostAddress = http://localhost:5230
 
-GET {{Auctify.API_HostAddress}}/weatherforecast/
+GET {{WorkTree.API_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
