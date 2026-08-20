@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WorkTree.API.Infra;
@@ -12,11 +11,9 @@ using WorkTree.API.Infra;
 namespace WorkTree.API.Migrations
 {
     [DbContext(typeof(WorkTreeDbContext))]
-    [Migration("20260819000053_CreateUserTable")]
-    partial class CreateUserTable
+    partial class WorkTreeDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
