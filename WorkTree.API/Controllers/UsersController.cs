@@ -4,6 +4,8 @@ using WorkTree.Communication.Responses.User;
 using Microsoft.AspNetCore.Mvc;
 using WorkTree.API.UseCases.Users.Create;
 using WorkTree.API.UseCases.Users.Delete;
+using WorkTree.API.UseCases.Users.GetAll;
+using WorkTree.API.UseCases.Users.GetById;
 using WorkTree.API.UseCases.Users.Update;
 
 namespace WorkTree.API.Controllers;
@@ -13,7 +15,7 @@ namespace WorkTree.API.Controllers;
 public class UsersController : Controller
 {
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseUserJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status409Conflict)]
     public IActionResult Register([FromBody] RequestUserJson request, [FromServices] CreateUserUseCase useCase)
@@ -46,5 +48,29 @@ public class UsersController : Controller
         useCase.Execute(userId);
 
         return Ok();
+    }
+
+    [HttpGet]
+    [Route("{userId}")]
+    [ProducesResponseType(typeof(ResponseUserJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status404NotFound)]
+    public IActionResult GetById([FromRoute] Guid userId, [FromServices] GetUserByIdUseCase useCase)
+    {
+        var response = useCase.Execute(userId);
+
+        return Ok(response);
+    }
+
+    [HttpGet]
+    [ProducesResponseType(typeof(List<ResponseUserJson>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status204NoContent)]
+    public IActionResult GetAll([FromServices] GetAllUsersUseCase useCase)
+    {
+        var users = useCase.Execute();
+
+        if (users.Count == 0)
+            return NoContent();
+
+        return Ok(users);
     }
 }

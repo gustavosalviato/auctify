@@ -9,4 +9,5 @@ public interface IUserRepository
     void Delete(User user);
     User? FindByEmail(string email);
     User? FindById(Guid id);
+    List<User> FindMany();
 }

@@ -40,4 +40,11 @@ public class UsersRepository : IUserRepository
 
         return user;
     }
+
+    public List<User> FindMany()
+    {
+        var users = _context.Users.ToList();
+
+        return users;
+    }
 }

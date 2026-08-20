@@ -1,0 +1,30 @@
+using WorkTree.API.Contracts;
+using WorkTree.Communication.Responses.User;
+using WorkTree.Exceptions.ExceptionsBase;
+
+namespace WorkTree.API.UseCases.Users.GetById;
+
+public class GetUserByIdUseCase
+{
+    private readonly IUserRepository _userRepository;
+
+    public GetUserByIdUseCase(IUserRepository userRepository)
+    {
+        _userRepository = userRepository;
+    }
+
+    public ResponseUserJson Execute(Guid userId)
+    {
+        var user = _userRepository.FindById(userId);
+
+        if (user is null)
+            throw new NotFoundErrorException("User does not exist");
+
+        return new ResponseUserJson
+        {
+            Id = user.Id,
+            Name = user.Name,
+            Email = user.Email,
+        };
+    }
+}
