@@ -24,6 +24,7 @@ public class UpdateUserUseCase
             throw new NotFoundErrorException("User does not exist.");
 
         user.Name = request.Name;
+        user.Touch();
 
         _userRepository.Update(user);
     }

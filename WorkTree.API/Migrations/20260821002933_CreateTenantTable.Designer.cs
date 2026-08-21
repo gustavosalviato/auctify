@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WorkTree.API.Infra;
@@ -11,9 +12,11 @@ using WorkTree.API.Infra;
 namespace WorkTree.API.Migrations
 {
     [DbContext(typeof(WorkTreeDbContext))]
-    partial class WorkTreeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260821002933_CreateTenantTable")]
+    partial class CreateTenantTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
